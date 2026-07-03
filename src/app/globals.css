@@ -152,3 +152,22 @@ body {
   box-shadow: 0 0 0 3px rgba(56, 182, 255, 0.25);
   background: rgba(255, 255, 255, 0.16);
 }
+
+/* Ocultar scrollbar del carrusel móvil */
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Respeto por usuarios con movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-mesh,
+  .animate-float,
+  .animate-dash,
+  .animate-ping-soft {
+    animation: none !important;
+  }
+}

@@ -47,8 +47,8 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-r from-white via-white/88 to-white/25 md:to-white/10" />
       <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/40" />
       {/* Luz ambiental azul sutil */}
-      <div className="animate-float absolute -left-40 top-1/3 h-[28rem] w-[28rem] rounded-full bg-electric/10 blur-[130px]" />
-      <div className="animate-float absolute right-0 top-16 h-72 w-72 rounded-full bg-cyan/15 blur-[110px] [animation-delay:2.5s]" />
+      <div className="animate-float absolute hidden md:block -left-40 top-1/3 h-[28rem] w-[28rem] rounded-full bg-electric/10 blur-[130px]" />
+      <div className="animate-float absolute hidden md:block right-0 top-16 h-72 w-72 rounded-full bg-cyan/15 blur-[110px] [animation-delay:2.5s]" />
 
       {/* Contenido */}
       <motion.div
