@@ -68,7 +68,7 @@ export default function CTAFinal() {
         />
       </motion.div>
       <div className="absolute inset-0 bg-gradient-to-b from-navy/60 via-transparent to-navy/70" />
-      <div className="animate-float absolute left-1/4 top-10 h-72 w-72 rounded-full bg-cyan/20 blur-[120px]" />
+      <div className="animate-float absolute hidden md:block left-1/4 top-10 h-72 w-72 rounded-full bg-cyan/20 blur-[120px]" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         <Reveal className="mx-auto mb-16 max-w-3xl text-center">

@@ -17,10 +17,12 @@ export default function Showcase() {
     const track = trackRef.current;
     if (!section || !track) return;
 
-    const ctx = gsap.context(() => {
+    // Scroll horizontal fijado SOLO en desktop.
+    // En móvil el carrusel usa scroll táctil nativo (sin jank).
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 768px)", () => {
       const getDistance = () => track.scrollWidth - window.innerWidth;
 
-      // Sticky section + horizontal scroll
       const tween = gsap.to(track, {
         x: () => -getDistance(),
         ease: "none",
@@ -35,7 +37,6 @@ export default function Showcase() {
         },
       });
 
-      // Parallax interno de cada imagen
       gsap.utils.toArray<HTMLElement>(".showcase-img").forEach((img) => {
         gsap.fromTo(
           img,
@@ -53,14 +54,14 @@ export default function Showcase() {
           }
         );
       });
-    }, section);
+    });
 
-    return () => ctx.revert();
+    return () => mm.revert();
   }, []);
 
   return (
     <section ref={sectionRef} id="proyectos" className="relative overflow-hidden bg-snow">
-      <div className="flex h-[100svh] flex-col justify-center">
+      <div className="flex flex-col justify-center py-20 md:h-[100svh] md:py-0">
         <div className="mx-auto w-full max-w-7xl px-6 pb-8 lg:px-10">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-blue">
             Proyectos
@@ -70,43 +71,46 @@ export default function Showcase() {
           </h2>
         </div>
 
-        <div ref={trackRef} className="flex w-max items-stretch gap-6 pl-6 pr-[12vw] lg:pl-10">
-          {projects.map((p, i) => (
-            <article
-              key={p.title}
-              className="group relative h-[58svh] w-[82vw] shrink-0 overflow-hidden rounded-3xl md:w-[46vw] lg:w-[38vw]"
-            >
-              <div className="showcase-img absolute inset-[-10%]">
-                <Image
-                  src={p.img}
-                  alt={p.title}
-                  fill
-                  sizes="(min-width:1024px) 42vw, 85vw"
-                  className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/15 to-transparent" />
-              <span className="font-display absolute right-6 top-5 text-7xl font-bold text-white/15">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div className="absolute inset-x-0 bottom-0 p-7 md:p-9">
-                <span className="glass-dark mb-4 inline-block rounded-full px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.25em] text-cyan">
-                  {p.tag}
+        {/* Móvil: carrusel nativo con snap · Desktop: pista fijada por GSAP */}
+        <div className="scrollbar-none snap-x snap-mandatory overflow-x-auto md:snap-none md:overflow-visible">
+          <div ref={trackRef} className="flex w-max items-stretch gap-5 pl-6 pr-[14vw] md:gap-6 lg:pl-10">
+            {projects.map((p, i) => (
+              <article
+                key={p.title}
+                className="group relative h-[52svh] w-[82vw] shrink-0 snap-center overflow-hidden rounded-3xl md:h-[58svh] md:w-[46vw] lg:w-[38vw]"
+              >
+                <div className="showcase-img absolute inset-0 md:inset-[-10%]">
+                  <Image
+                    src={p.img}
+                    alt={p.title}
+                    fill
+                    sizes="(min-width:1024px) 42vw, 85vw"
+                    className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/15 to-transparent" />
+                <span className="font-display absolute right-6 top-5 text-7xl font-bold text-white/15">
+                  {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="font-display text-2xl font-bold tracking-tight text-white md:text-3xl">
-                  {p.title}
-                </h3>
-                <p className="mt-2 max-w-md text-sm leading-relaxed text-white/85 opacity-0 transition-all duration-500 group-hover:opacity-100">
-                  {p.desc}
-                </p>
-              </div>
-            </article>
-          ))}
+                <div className="absolute inset-x-0 bottom-0 p-7 md:p-9">
+                  <span className="glass-dark mb-4 inline-block rounded-full px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.25em] text-cyan">
+                    {p.tag}
+                  </span>
+                  <h3 className="font-display text-2xl font-bold tracking-tight text-white md:text-3xl">
+                    {p.title}
+                  </h3>
+                  <p className="mt-2 max-w-md text-sm leading-relaxed text-white/85 opacity-0 transition-all duration-500 group-hover:opacity-100">
+                    {p.desc}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
 
         <div className="mx-auto mt-8 w-full max-w-7xl px-6 lg:px-10">
           <p className="text-xs uppercase tracking-[0.3em] text-steel">
-            Desliza — el proyecto continúa →
+            Desliza para ver más →
           </p>
         </div>
       </div>
