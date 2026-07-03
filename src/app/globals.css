@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@theme {
+  /* Identidad Bioclima — luminosa, corporativa, ingeniería */
+  --color-ink: #0d1c30;        /* texto principal (azul muy oscuro) */
+  --color-navy: #0a2e6e;       /* azul profundo — solo acentos/secciones azules */
+  --color-blue: #0a58d0;       /* azul corporativo */
+  --color-electric: #1273f8;   /* azul eléctrico */
+  --color-cyan: #38b6ff;       /* celeste tecnológico */
+  --color-paper: #ffffff;
+  --color-snow: #f5f8fc;       /* gris muy claro */
+  --color-cloud: #e9f0fa;      /* azul-gris claro */
+  --color-mist: #d5e1f2;       /* bordes suaves */
+  --color-steel: #56698a;   /* texto secundario sobre claro */
+  --font-display: "Space Grotesk";
+  --font-body: "Inter";
+}
+
+html {
+  scroll-behavior: auto;
+  scroll-padding-top: var(--nav-h, 88px);
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-electric);
+  color: white;
+}
+
+/* ---------- Utilidades premium ---------- */
+
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--color-navy) 10%, var(--color-electric) 55%, var(--color-cyan) 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-light {
+  background: linear-gradient(100deg, #ffffff 25%, var(--color-cyan) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glass claro (sobre fondos luminosos) */
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(13, 28, 48, 0.08);
+  box-shadow: 0 8px 32px rgba(10, 46, 110, 0.06);
+}
+
+/* Glass oscuro (sobre fotos / secciones azules) */
+.glass-dark {
+  background: rgba(10, 30, 66, 0.35);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.glow-line {
+  background: linear-gradient(90deg, transparent, var(--color-electric), transparent);
+}
+
+/* Gradiente animado claro */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.animated-gradient-blue {
+  background: linear-gradient(120deg, #0a2e6e, #0a58d0, #072250, #1273f8);
+  background-size: 300% 300%;
+  animation: gradient-shift 16s ease infinite;
+}
+
+/* Marquee infinito */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 36s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Pulso */
+@keyframes ping-soft {
+  0% { transform: scale(1); opacity: 0.9; }
+  80%, 100% { transform: scale(2.6); opacity: 0; }
+}
+.animate-ping-soft {
+  animation: ping-soft 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Flotación */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+.animate-float {
+  animation: float-y 7s ease-in-out infinite;
+}
+
+/* Deriva lenta para el gradient mesh del mapa */
+@keyframes mesh-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(4%, -3%) scale(1.08); }
+  66% { transform: translate(-3%, 4%) scale(0.96); }
+}
+.animate-mesh {
+  animation: mesh-drift 18s ease-in-out infinite;
+}
+
+/* Flujo de líneas luminosas (dash) */
+@keyframes dash-flow {
+  to { stroke-dashoffset: -120; }
+}
+.animate-dash {
+  animation: dash-flow 6s linear infinite;
+}
+
+/* Scrollbar clara */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color-snow); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-mist);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-electric); }
+
+/* Inputs del formulario premium (sobre azul) */
+.field {
+  @apply w-full rounded-xl border border-white/25 bg-white/10 px-4 py-3.5 text-sm text-white placeholder:text-white/50 outline-none transition-all duration-300;
+}
+.field:focus {
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 0 3px rgba(56, 182, 255, 0.25);
+  background: rgba(255, 255, 255, 0.16);
+}
