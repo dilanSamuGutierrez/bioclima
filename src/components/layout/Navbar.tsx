@@ -56,9 +56,9 @@ export default function Navbar() {
             LOGO — reemplaza el archivo /public/logo.svg
             (o cambia src por /logo.png con el logo real)
             ============================================ */}
-        <a href="#inicio" aria-label="Bioclima SAS — inicio" className="relative block h-10 w-40">
+        <a href="#inicio" aria-label="Bioclima SAS — inicio" className="relative block h-15 w-80">
           <Image
-            src="/logo.svg"
+            src="/logo.png"
             alt="Bioclima SAS"
             fill
             priority

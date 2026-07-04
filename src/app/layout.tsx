@@ -15,6 +15,13 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description: site.description,
+
+  icons: {
+    icon: "/Icono.png",
+    shortcut: "/Icono.png",
+    apple: "/Icono.png",
+  },
+
   keywords: [
     "climatización de espacios",
     "climatización comercial Colombia",
@@ -41,7 +48,7 @@ export const metadata: Metadata = {
     description: site.description,
     images: [
       {
-        url: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=1200&auto=format&fit=crop",
+        url: "/Icono.png",
         width: 1200,
         height: 630,
         alt: `${site.name} — Climatización y HVAC`,
@@ -55,7 +62,6 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
 };
-
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "HVACBusiness",

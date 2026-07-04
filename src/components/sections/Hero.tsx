@@ -9,7 +9,7 @@ import MagneticButton from "@/components/ui/MagneticButton";
 import Marquee from "@/components/ui/Marquee";
 
 const HERO_IMG =
-  "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2800&auto=format&fit=crop";
+  "/bio_fondo.webp";
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -44,8 +44,8 @@ export default function Hero() {
         />
       </motion.div>
       {/* Velo luminoso: legibilidad sin oscurecer */}
-      <div className="absolute inset-0 bg-gradient-to-r from-white via-white/88 to-white/25 md:to-white/10" />
-      <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/40" />
+      <div className="absolute inset-0 bg-gradient-to-r from-white via-white/60 to-white/20 md:to-white/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/30" />
       {/* Luz ambiental azul sutil */}
       <div className="animate-float absolute hidden md:block -left-40 top-1/3 h-[28rem] w-[28rem] rounded-full bg-electric/10 blur-[130px]" />
       <div className="animate-float absolute hidden md:block right-0 top-16 h-72 w-72 rounded-full bg-cyan/15 blur-[110px] [animation-delay:2.5s]" />
@@ -112,25 +112,6 @@ export default function Hero() {
               Ver proyectos
             </a>
           </MagneticButton>
-        </motion.div>
-
-        {/* Indicadores de confianza */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 2.4 }}
-          className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-steel"
-        >
-          {["+15 años de experiencia", "Cobertura nacional", "Proyectos de alta complejidad"].map(
-            (t) => (
-              <span key={t} className="flex items-center gap-2.5">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" className="text-blue">
-                  <path d="M20 6 9 17l-5-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                {t}
-              </span>
-            )
-          )}
         </motion.div>
       </motion.div>
 
