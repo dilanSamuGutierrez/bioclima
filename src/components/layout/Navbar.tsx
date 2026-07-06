@@ -58,7 +58,7 @@ export default function Navbar() {
             ============================================ */}
         <a href="#inicio" aria-label="Bioclima SAS — inicio" className="relative block h-15 w-80">
           <Image
-            src="/logo.png"
+            src="/Logo.png"
             alt="Bioclima SAS"
             fill
             priority
